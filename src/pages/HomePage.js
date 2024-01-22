@@ -49,6 +49,7 @@ import Tabs from "./components/Tabs";
 import Tooltips from "./components/Tooltips";
 import Toasts from "./components/Toasts";
 import Users from '../components/Users';
+import Messages from './examples/Messages';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -112,6 +113,7 @@ export default () => (
 
     {/* pages */}
     <RouteWithSidebar exact path={Routes.Presentation.path} component={DashboardOverview} />
+    <RouteWithSidebar exact path={Routes.Messages.path} component={Messages} />
 
 
 

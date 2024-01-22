@@ -41,6 +41,21 @@ const Users = () => {
     useEffect(() => {
         getUsers();
     }, [])
+
+
+    const rowsPerPage = 8;
+    const [currentPage, setCurrentPage] = useState(1);
+    const indexOfLastRow = currentPage * rowsPerPage;
+    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    const currentRows = userData?.slice(indexOfFirstRow, indexOfLastRow);
+
+    const totalPages = Math.ceil(userData?.length / rowsPerPage);
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+
     return (
         <section>
 
@@ -60,7 +75,7 @@ const Users = () => {
                 <tbody>
 
                     {
-                        userData && userData.map((item, index) =>
+                        currentRows && currentRows.map((item, index) =>
                         (
                             <tr key={index} >
                                 <th>{item.id}</th>
@@ -134,21 +149,30 @@ const Users = () => {
                 </tbody >
             </table >
 
-            <nav>
+            <div style={{ cursor: 'pointer' }}>
                 <ul className="pagination">
-                    <li className="page-item disabled">
-                        <div className="page-link" to="#" >Previous</div>
+                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                        <div className="page-link" onClick={() => handlePageChange(currentPage - 1)}>
+                            Previous
+                        </div>
                     </li>
-                    <li className="page-item"><div className="page-link" to="#">1</div></li>
-                    <li className="page-item active">
-                        <div className="page-link" to="#">2 <span className="sr-only">(current)</span></div>
-                    </li>
-                    <li className="page-item"><div className="page-link" to="#">3</div></li>
-                    <li className="page-item">
-                        <div className="page-link" >Next</div>
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                        <li
+                            key={index}
+                            className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+                        >
+                            <div className="page-link" onClick={() => handlePageChange(index + 1)}>
+                                {index + 1} {currentPage === index + 1 && <span className="sr-only">(current)</span>}
+                            </div>
+                        </li>
+                    ))}
+                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                        <div className="page-link" onClick={() => handlePageChange(currentPage + 1)}>
+                            Next
+                        </div>
                     </li>
                 </ul>
-            </nav>
+            </div>
         </section >
 
     )

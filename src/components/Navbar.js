@@ -42,7 +42,7 @@ export default ({ props }) => {
         }
       });
 
-      console.log(respose.data);
+      // console.log(respose.data);
       setMyDetails(respose.data)
     }
     catch (err) {
