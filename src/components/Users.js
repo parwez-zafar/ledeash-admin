@@ -60,6 +60,7 @@ const Users = () => {
         <section>
 
 
+            <h1 className='text-center mb-1'>Users</h1>
 
             <table className="table table-hover table-responsive-xl table-responsive-md">
                 <thead>

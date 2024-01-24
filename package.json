@@ -1,7 +1,7 @@
 {
   "name": "@themesberg/volt-react-dashboard",
   "description": "Volt React Dashboard is a free and open source admin dashboard template powered by React.js and Bootstrap 5",
-  "author": "Themesberg", 
+  "author": "Themesberg",
   "keywords": [
     "bootstrap 5",
     "react",
@@ -38,7 +38,6 @@
     "chartist": "^0.11.4",
     "chartist-plugin-tooltips-updated": "^0.1.4",
     "moment-timezone": "^0.5.31",
-    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-chartist": "^0.14.4",
     "react-copy-to-clipboard": "^5.0.3",
@@ -51,10 +50,11 @@
     "react-scripts": "3.4.3",
     "react-select": "^5.8.0",
     "react-transition-group": "^4.4.1",
+    "sass": "^1.70.0",
     "simplebar-react": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "build-local": "PUBLIC_URL=./ react-scripts build",
     "test": "react-scripts test",
@@ -64,6 +64,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "browserslist": {
     "production": [
