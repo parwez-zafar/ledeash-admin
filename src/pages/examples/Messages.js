@@ -75,7 +75,7 @@ const Messages = () => {
                     <tr>
                         <th scope="col" >User name</th>
                         <th scope="col">Mobile</th>
-                        <th scope="col">Keyword</th>
+                        {/* <th scope="col">Keyword</th> */}
                         <th scope="col">Message</th>
                         <th scope="col">Timestamp</th>
                     </tr>
@@ -99,7 +99,7 @@ const Messages = () => {
                                 <tr key={index}>
                                     <th>{item.username}</th>
                                     <th>{item.userId.number}</th>
-                                    <th>{item.keyword}</th>
+                                    {/* <th>{item.keyword}</th> */}
                                     <th>{item.conversation}</th>
                                     <th> {new Date(item.timestamp).toLocaleDateString('en-US', options)}</th>
 

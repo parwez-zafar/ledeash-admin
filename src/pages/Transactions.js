@@ -113,6 +113,7 @@ export default () => {
       <section>
 
 
+        <h1 className='text-center mb-1'>Orders</h1>
 
         <table className="table table-hover table-responsive-xl table-responsive-md">
           <thead>
@@ -120,7 +121,7 @@ export default () => {
               <th scope="col" >Id</th>
               <th scope="col">Name</th>
               <th scope="col">start date</th>
-              <th scope="col">end date</th>
+              <th scope="col">trial Period End Time</th>
               <th scope="col">Status</th>
             </tr>
           </thead>
@@ -132,7 +133,7 @@ export default () => {
                   <th>{item.packageSelected._id}</th>
                   <th>{item.packageSelected.name}</th>
                   <th>{new Date(item.packageSelected.startTime).toLocaleDateString('en-US', options)}</th>
-                  <th>{new Date(item.packageSelected.endDate).toLocaleDateString('en-US', options)}</th>
+                  <th>{new Date(item.packageSelected.trialPeriodEndTime).toLocaleDateString('en-US', options)}</th>
                   <th> {item.packageSelected.subscriptionStatus}</th>
                 </tr>
               )
