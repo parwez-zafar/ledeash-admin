@@ -100,7 +100,7 @@ export default ({ props }) => {
             </Form>
           </div>
           <Nav className="align-items-center">
-            <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
+            {/* <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
               <Dropdown.Toggle as={Nav.Link} className="text-dark icon-notifications me-lg-3">
                 <span className="icon icon-sm">
                   <FontAwesomeIcon icon={faBell} className="bell-shake" />
@@ -120,7 +120,7 @@ export default ({ props }) => {
                   </Dropdown.Item>
                 </ListGroup>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
 
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle as={Nav.Link} className="pt-1 px-0">

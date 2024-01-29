@@ -12,7 +12,8 @@ import { Link } from 'react-router-dom';
 
 import { Routes } from "../routes";
 import ThemesbergLogo from "../assets/img/themesberg.svg";
-import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
+// import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
+import leadeshLogo from '../assets/img/logo/leadesh.png'
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
 export default (props = {}) => {
@@ -99,8 +100,9 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Volt React" link={Routes.Presentation.path} image={ReactHero} />
-
+              {/* <NavItem title="Volt React" link={Routes.Presentation.path} image={ReactHero} /> */}
+              {/* <NavItem title="Leadesh" link={Routes.Presentation.path} image={leadeshLogo} /> */}
+              <img src={leadeshLogo} alt="leadeshLogo" style={{ width: '80%', height: '80%' }} />
               <CollapsableNavItem title="Dashboard" icon={faTable}>
 
 
