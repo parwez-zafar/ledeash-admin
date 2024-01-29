@@ -36,8 +36,8 @@ const Messages = () => {
                 }
             });
 
-            console.log(response);
-            setAllMessage(response.data)
+            // console.log(response);
+            setAllMessage(response?.data?.messages)
         }
         catch (err) {
             console.log("error in getAllMessage(): ", err);

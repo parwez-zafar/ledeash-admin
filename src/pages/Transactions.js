@@ -24,8 +24,8 @@ export default () => {
         }
       });
 
-      console.log(respose.data);
-      setOrderDetails(respose.data)
+      // console.log(respose.data);
+      setOrderDetails(respose?.data?.packages)
     }
     catch (err) {
       console.log("error in get user", err);
