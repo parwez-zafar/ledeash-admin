@@ -7,6 +7,7 @@ import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 import Select from "react-select";
 import axios from "axios";
+import Swal from 'sweetalert2';
 // import Axios from "../../axios"
 // import Cookies from "js-cookie";
 ;
@@ -25,18 +26,22 @@ const SignIn = () => {
     countryCode: hardcodedCountryCodes[0],
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const fullMobile = formData.countryCode.value + formData.mobile;
-    console.log(fullMobile);
+    // console.log(fullMobile);
 
     const requestData = {
       password: formData.password,
       number: fullMobile
     };
-    console.log(requestData);
+    // console.log(requestData);
 
     try {
+
       const response = await axios.post("https://leadesh-whatsapp.onrender.com/api/signin", requestData);
       // const jwtToken = response.headers['Jwt'];
       // console.log('Response Headers:', response.headers);
@@ -50,12 +55,27 @@ const SignIn = () => {
 
         // history.push('/#download');
         // console.log('JWT Token:', jwt);
-        history.push(Routes.Presentation.path);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Sign-In Successful',
+          text: 'Welcome back'
+        }).then((result) => {
+          if (result.isConfirmed) {
+
+            history.push(Routes.Presentation.path);
+          }
+        });
+
+
+        // history.push(Routes.Presentation.path);
       }
     } catch (error) {
-      alert("Wrong username or password");
-      console.log("Wrong username or password");
-      console.error("Error during sign-in:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Sign-In Failed',
+        text: 'Invalid number or password. Please try again.',
+      });
       setFormData({
         mobile: "",
         password: "",
@@ -63,6 +83,7 @@ const SignIn = () => {
       });
     }
 
+    setLoading(false);
 
   };
 
@@ -94,11 +115,11 @@ const SignIn = () => {
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
         <Container>
-          <p className="text-center">
+          {/* <p className="text-center">
             <Card.Link as={Link} to={Routes.Presentation.path} className="text-gray-700">
               <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to Main page
             </Card.Link>
-          </p>
+          </p> */}
           <Row className="justify-content-center form-bg-image" style={{ backgroundImage: `url(${BgImage})` }}>
             <Col xs={12} className="d-flex align-items-center justify-content-center">
               <div className="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
@@ -202,14 +223,16 @@ const SignIn = () => {
                     </InputGroup>
                   </Form.Group>
                   <div className="d-flex justify-content-between align-items-center mb-4">
-                    <Form.Check type="checkbox">
+                    {/* <Form.Check type="checkbox">
                       <FormCheck.Input id="defaultCheck5" className="me-2" />
                       <FormCheck.Label htmlFor="defaultCheck5" className="mb-0">Remember me</FormCheck.Label>
-                    </Form.Check>
+                    </Form.Check> */}
                     <Card.Link as={Link} to={Routes.ResetPassword.path} className="small text-end">Lost password?</Card.Link>
                   </div>
                   <Button variant="primary" type="submit" className="w-100">
-                    Sign in
+                    {
+                      loading ? <>Loading...</> : <>Sign in</>
+                    }
                   </Button>
                 </Form>
 

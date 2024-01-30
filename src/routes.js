@@ -17,6 +17,8 @@ export const Routes = {
     NotFound: { path: "/examples/404" },
     ServerError: { path: "/examples/500" },
     Messages: { path: "/messages" },
+    ChangePassword: { path: "/ChangePassword" },
+    MyProfile: { path: "/MyProfile" },
 
 
     // docs

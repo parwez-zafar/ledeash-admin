@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUser, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, InputGroup } from '@themesberg/react-bootstrap';
+
+
+import { Row, Col, Nav, Form, Image, Navbar, Dropdown, Container, ListGroup, InputGroup, Card } from '@themesberg/react-bootstrap';
 import { Routes } from '../routes'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 // import useNavigate from 'react-router-dom'
 import NOTIFICATIONS_DATA from "../data/notifications";
 import Profile3 from "../assets/img/team/profile-picture-3.jpg";
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default ({ props }) => {
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
@@ -28,8 +31,17 @@ export default ({ props }) => {
 
   const logoutHander = () => {
     localStorage.removeItem('jwt')
-    alert('logout')
-    history.push(Routes.Signin.path);
+    Swal.fire({
+      icon: 'success',
+      title: 'Sign-Out Successful',
+      // text: 'Welcome back'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        // history.push(Routes.Presentation.path);
+        history.push(Routes.Signin.path);
+      }
+    });
   }
   const getMe = async () => {
     const jwt = localStorage.getItem('jwt');
@@ -134,17 +146,19 @@ export default ({ props }) => {
               </Dropdown.Toggle>
               <Dropdown.Menu className="user-dropdown dropdown-menu-right mt-2">
                 <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> My Profile
+                  <FontAwesomeIcon icon={faUserCircle} className="me-2" /> <Card.Link as={Link} to={Routes.MyProfile.path} className="small text-end">
+
+                    <span>My Profile</span>
+                  </Card.Link>
                 </Dropdown.Item>
                 <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faCog} className="me-2" /> Settings
+                  <Card.Link as={Link} to={Routes.ChangePassword.path} className="small text-end">
+
+                    <FontAwesomeIcon icon={faCog} className="me-2" />
+                    Change Password
+                  </Card.Link>
                 </Dropdown.Item>
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faEnvelopeOpen} className="me-2" /> Messages
-                </Dropdown.Item>
-                <Dropdown.Item className="fw-bold">
-                  <FontAwesomeIcon icon={faUserShield} className="me-2" /> Support
-                </Dropdown.Item>
+
 
                 <Dropdown.Divider />
 

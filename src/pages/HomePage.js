@@ -50,6 +50,8 @@ import Tooltips from "./components/Tooltips";
 import Toasts from "./components/Toasts";
 import Users from '../components/Users';
 import Messages from './examples/Messages';
+import ChangePassword from './examples/ChangePassword';
+import MyProfile from './examples/MyProfile';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -110,6 +112,8 @@ export default () => (
     <RouteWithLoader exact path={Routes.Lock.path} component={Lock} />
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
+    <RouteWithLoader exact path={Routes.ChangePassword.path} component={ChangePassword} />
+    <RouteWithLoader exact path={Routes.MyProfile.path} component={MyProfile} />
 
     {/* pages */}
     <RouteWithSidebar exact path={Routes.Presentation.path} component={DashboardOverview} />
